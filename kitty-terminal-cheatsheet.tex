@@ -5,7 +5,7 @@
 \documentclass[
   a4paper,
   landscape,
-  fontsize=7pt]{scrartcl}
+  fontsize=8pt]{scrartcl}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -18,7 +18,6 @@
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
   \setmainfont[]{DejaVuSans}
-  \setmonofont[]{DejaVuSansMono}
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -73,14 +72,13 @@
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-% center of header
-\fancyhead[C]{Kitty Terminal Cheatsheet}
-% left of footer
-\fancyfoot[L]{kitty: https://sw.kovidgoyal.net/kitty/}
-% center of footer
-\fancyfoot[C]{Cheatsheet format: @jmcastagnetto, Jesus M. Castagnetto}
+% header
+\fancyhead[C]{Kitty Terminal Cheatsheet (get kitty at https://sw.kovidgoyal.net/kitty/)}
+\fancyhead[R]{Source of text: kitty documentation}
+% footer
+\fancyfoot[L]{Cheatsheet repo: https://github.com/jmcastagnetto/kitty-terminal-cheatsheet}
 % page number on the right of footer
-\fancyfoot[R]{\thepage}
+\fancyfoot[R]{@jmcastagnetto (\today)}
 \fancypagestyle{plain}{\pagestyle{fancy}}
 
 \newenvironment{cols}[1][]{}{}

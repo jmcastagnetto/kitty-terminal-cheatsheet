@@ -8,12 +8,11 @@ output:
 documentclass: scrartcl
 classoption: 
   - landscape
-  - fontsize=7pt
+  - fontsize=8pt
 papersize: a4
 geometry:
   - margin=1.5cm
 mainfont: DejaVuSans
-monofont: DejaVuSansMono
 ---
 
 
