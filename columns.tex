@@ -1,0 +1,29 @@
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% center of header
+\fancyhead[C]{Kitty Terminal Cheatsheet (get kitty at https://sw.kovidgoyal.net/kitty/)}
+% left of footer
+\fancyfoot[L]{Repository: }
+% center of footer
+\fancyfoot[C]{Cheatsheet format: @jmcastagnetto, Jesus M. Castagnetto}
+% page number on the right of footer
+\fancyfoot[R]{\thepage}
+\fancypagestyle{plain}{\pagestyle{fancy}}
+
+\newenvironment{cols}[1][]{}{}
+
+\newenvironment{col}[1]{\begin{minipage}{#1}\ignorespaces}{%
+  \end{minipage}
+  \ifhmode\unskip\fi
+  \aftergroup\useignorespacesandallpars}
+
+  \def\useignorespacesandallpars#1\ignorespaces\fi{%
+  #1\fi\ignorespacesandallpars}
+
+  \makeatletter
+  \def\ignorespacesandallpars{%
+    \@ifnextchar\par
+    {\expandafter\ignorespacesandallpars\@gobble}%
+    {}%
+  }
+  \makeatother

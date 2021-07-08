@@ -1,0 +1,509 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  a4paper,
+  landscape,
+  fontsize=7pt]{scrartcl}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  \setmainfont[]{DejaVuSans}
+  \setmonofont[]{DejaVuSansMono}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% center of header
+\fancyhead[C]{Kitty Terminal Cheatsheet}
+% left of footer
+\fancyfoot[L]{kitty: https://sw.kovidgoyal.net/kitty/}
+% center of footer
+\fancyfoot[C]{Cheatsheet format: @jmcastagnetto, Jesus M. Castagnetto}
+% page number on the right of footer
+\fancyfoot[R]{\thepage}
+\fancypagestyle{plain}{\pagestyle{fancy}}
+
+\newenvironment{cols}[1][]{}{}
+
+\newenvironment{col}[1]{\begin{minipage}{#1}\ignorespaces}{%
+  \end{minipage}
+  \ifhmode\unskip\fi
+  \aftergroup\useignorespacesandallpars}
+
+  \def\useignorespacesandallpars#1\ignorespaces\fi{%
+  #1\fi\ignorespacesandallpars}
+
+  \makeatletter
+  \def\ignorespacesandallpars{%
+    \@ifnextchar\par
+    {\expandafter\ignorespacesandallpars\@gobble}%
+    {}%
+  }
+  \makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+\begin{cols}
+
+\begin{col}{0.48\textwidth}
+
+\hypertarget{default-shortcuts}{%
+\subsection{Default shortcuts}\label{default-shortcuts}}
+
+\hypertarget{scrolling}{%
+\subsubsection{Scrolling}\label{scrolling}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Action & Shortcut \\
+\midrule
+\endhead
+Scroll line up & ctrl+shift+up (also ⌥+⌘+⇞ and ⌘+↑ on macOS) \\
+Scroll line down & ctrl+shift+down (also ⌥+⌘+⇟ and ⌘+↓ on macOS) \\
+Scroll page up & ctrl+shift+page\_up (also ⌘+⇞ on macOS) \\
+Scroll page down & ctrl+shift+page\_down (also ⌘+⇟ on macOS) \\
+Scroll to top & ctrl+shift+home (also ⌘+↖ on macOS) \\
+Scroll to bottom & ctrl+shift+end (also ⌘+↘ on macOS) \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{tabs-management}{%
+\subsubsection{Tabs management}\label{tabs-management}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Action & Shortcut \\
+\midrule
+\endhead
+New tab & ctrl+shift+t (also ⌘+t on macOS) \\
+Close tab & ctrl+shift+q (also ⌘+w on macOS) \\
+Next tab & ctrl+shift+right (also \^{}+⇥ and ⇧+⌘+{]} on macOS) \\
+Previous tab & ctrl+shift+left (also ⇧+\^{}+⇥ and ⇧+⌘+{[} on macOS) \\
+Next layout & ctrl+shift+l \\
+Move tab forward & ctrl+shift+. \\
+Move tab backward & ctrl+shift+, \\
+Set tab title & ctrl+shift+alt+t (also ⇧+⌘+i on macOS) \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{other-keyboard-shortcuts}{%
+\subsubsection{Other keyboard
+shortcuts}\label{other-keyboard-shortcuts}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Action & Shortcut \\
+\midrule
+\endhead
+Copy to clipboard & ctrl+shift+c (also ⌘+c on macOS) \\
+Paste from clipboard & ctrl+shift+v (also ⌘+v on macOS) \\
+Paste from selection & ctrl+shift+s \\
+Increase font size & ctrl+shift+equal (also ⌘++ on macOS) \\
+Decrease font size & ctrl+shift+minus (also ⌘+- on macOS) \\
+Restore font size & ctrl+shift+backspace (also ⌘+0 on macOS) \\
+Toggle fullscreen & ctrl+shift+f11 (also \^{}+⌘+f on macOS) \\
+Toggle maximized & ctrl+shift+f10 \\
+Input unicode character & ctrl+shift+u (also \^{}+⌘+space on macOS) \\
+Click URL using the keyboard & ctrl+shift+e \\
+Reset the terminal & ctrl+shift+delete \\
+Reload kitty.conf & ctrl+shift+f5 (also \^{}+⌘+f5 on macOS) \\
+Debug kitty.conf & ctrl+shift+f6 (also ⌘+option+f6 on macOS) \\
+Pass current selection to program & ctrl+shift+o \\
+Edit kitty config file & ctrl+shift+f2 \\
+Open a kitty shell & ctrl+shift+escape \\
+Increase background opacity & ctrl+shift+a\textgreater m \\
+Decrease background opacity & ctrl+shift+a\textgreater l \\
+Full background opacity & ctrl+shift+a\textgreater1 \\
+Reset background opacity & ctrl+shift+a\textgreater d \\
+\bottomrule
+\end{longtable}
+
+\end{col}
+
+\begin{col}{0.02\textwidth}
+~
+
+\end{col}
+
+\begin{col}{0.48\textwidth}
+
+\hypertarget{windows-management}{%
+\subsubsection{Windows management}\label{windows-management}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.29}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.71}}@{}}
+\toprule
+Action & Shortcut \\
+\midrule
+\endhead
+New window & ctrl+shift+enter (also ⌘+↩ on macOS) \\
+New OS window & ctrl+shift+n (also ⌘+n on macOS) \\
+Close window & ctrl+shift+w (also ⇧+⌘+d on macOS) \\
+Next window & ctrl+shift+{]} \\
+Previous window & ctrl+shift+{[} \\
+Move window forward & ctrl+shift+f \\
+Move window backward & ctrl+shift+b \\
+Move window to top & ctrl+shift+` \\
+Focus specific window & ctrl+shift+1, ctrl+shift+2 \ldots{} ctrl+shift+0
+(also ⌘+1, ⌘+2 \ldots{} ⌘+9 on macOS) (clockwise from the top-left) \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{mappable-actions}{%
+\subsection{Mappable actions}\label{mappable-actions}}
+
+\hypertarget{copypaste}{%
+\subsubsection{Copy/Paste}\label{copypaste}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{copy\_and\_clear\_or\_interrupt}: Copy the selected text from
+  the active window to the clipboard and clear selection, if no
+  selection, send Ctrl-C
+\item
+  \textbf{copy\_or\_interrupt}: Copy the selected text from the active
+  window to the clipboard, if no selection, send Ctrl-C
+\item
+  \textbf{copy\_to\_clipboard}: Copy the selected text from the active
+  window to the clipboard. Default shortcuts using this action:
+  ctrl+shift+c
+\item
+  \textbf{pass\_selection\_to\_program}: Pass the selected text from the
+  active window to the specified program. Default shortcuts using this
+  action: ctrl+shift+o
+\item
+  \textbf{paste}: Paste the specified text into the current window
+\item
+  \textbf{show\_scrollback}: Show scrollback in a pager like less.
+  Default shortcuts using this action: ctrl+shift+h
+\item
+  \textbf{copy\_to\_buffer}: Copy the selection from the active window
+  to the specified buffer.
+\item
+  \textbf{paste\_from\_buffer}: Paste from the specified buffer to the
+  active window.
+\item
+  \textbf{paste\_from\_clipboard}: Paste from the clipboard to the
+  active window. Default shortcuts using this action: ctrl+shift+v
+\item
+  \textbf{paste\_from\_selection}: Paste from the clipboard to the
+  active window. Default shortcuts using this action: ctrl+shift+s
+\end{itemize}
+
+\hypertarget{marks}{%
+\subsubsection{Marks}\label{marks}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{remove\_marker}: Remove a previously created marker
+\item
+  \textbf{scroll\_to\_mark}: Scroll to the next or previous mark of the
+  specified type
+\item
+  \textbf{toggle\_marker}: Toggle the current marker on/off
+\item
+  \textbf{create\_marker}: Create a new marker
+\end{itemize}
+
+\hypertarget{mouse-actions}{%
+\subsubsection{Mouse actions}\label{mouse-actions}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{mouse\_click\_url}: Click the URL under the mouse
+\item
+  \textbf{mouse\_click\_url\_or\_select}: Click the URL under the mouse
+  only if the screen has no selection
+\item
+  \textbf{mouse\_selection}: Manipulate the selection based on the
+  current mouse position
+\item
+  \textbf{paste\_selection}: Paste the current primary selection
+\item
+  \textbf{paste\_selection\_or\_clipboard}: Paste the current primary
+  selection or the clipboard if no selection is present
+\end{itemize}
+
+\end{col}
+
+\end{cols}
+
+\pagebreak
+
+\begin{cols}
+
+\begin{col}{0.48\textwidth}
+
+\hypertarget{scrolling-1}{%
+\subsubsection{Scrolling}\label{scrolling-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{scroll\_end}: Scroll to the bottom of the scrollback buffer.
+  Default shortcuts using this action: ctrl+shift+end
+\item
+  \textbf{scroll\_home}: Scroll to the top of the scrollback buffer.
+  Default shortcuts using this action: ctrl+shift+home
+\item
+  \textbf{scroll\_line\_down}: Scroll down by one line. Default
+  shortcuts using this action: ctrl+shift+down
+\item
+  \textbf{scroll\_line\_up}: Scroll up by one line. Default shortcuts
+  using this action: ctrl+shift+up
+\item
+  \textbf{scroll\_page\_down}: Scroll down by one page. Default
+  shortcuts using this action: ctrl+shift+page\_down
+\item
+  \textbf{scroll\_page\_up}: Scroll up by one page. Default shortcuts
+  using this action: ctrl+shift+page\_up
+\end{itemize}
+
+\hypertarget{windows-management-1}{%
+\subsubsection{Windows management}\label{windows-management-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{close\_other\_windows\_in\_tab}: Close all windows in the tab
+  other than the currently active window.
+\item
+  \textbf{close\_window}: Close the currently active window. Default
+  shortcuts using this action: ctrl+shift+w
+\item
+  \textbf{move\_window}: Move the window in the specified direction.
+  Default shortcuts using this action: ctrl+shift+b
+\item
+  \textbf{move\_window\_forward}: Move active window forward (swap it
+  with the next window). Default shortcuts using this action:
+  ctrl+shift+f
+\item
+  \textbf{move\_window\_to\_top}: Move active window to the top (make it
+  the first window). Default shortcuts using this action: ctrl+shift+`
+\item
+  \textbf{neighboring\_window}: Focus the neighboring window in the
+  current tab. Default shortcuts using this action: ctrl+shift+{]}
+\item
+  \textbf{nth\_window}: Focus the nth window if positive or the
+  previously active windows if negative. Default shortcuts using this
+  action: ctrl+shift+{[}
+\item
+  \textbf{reset\_window\_sizes}: Reset window sizes undoing any dynamic
+  resizing of windows.
+\item
+  \textbf{resize\_window}: Resize the active window by the specified
+  amount.
+\item
+  \textbf{change\_font\_size}: Change the font size for the current or
+  all OS Windows. Default shortcuts using this action: ctrl+shift+minus,
+  ctrl+shift+equal, ctrl+shift+backspace
+\item
+  \textbf{close\_os\_window}: Close the currently active OS Window.
+  Default shortcuts using this action: shift+cmd+w
+\item
+  \textbf{detach\_window}: Detach a window, moving it to another tab or
+  OS Window.
+\item
+  \textbf{new\_os\_window\_with\_cwd}: New OS Window with the same
+  working directory as the currently active window.
+\item
+  \textbf{new\_window}: Create a new window. Default shortcuts using
+  this action: ctrl+shift+enter
+\item
+  \textbf{new\_window\_with\_cwd}: Create a new window with working
+  directory same as that of the active window.
+\item
+  \textbf{quit}: Quit, closing all windows
+\item
+  \textbf{set\_background\_opacity}: Set the background opacity for the
+  active OS Window. Default shortcuts using this action:
+  ctrl+shift+a\textgreater l, ctrl+shift+a\textgreater1,
+  ctrl+shift+a\textgreater m, ctrl+shift+a\textgreater d
+\item
+  \textbf{start\_resizing\_window}: Resize the active window
+  interactively. Default shortcuts using this action: ctrl+shift+r
+\item
+  \textbf{toggle\_fullscreen}: Toggle the fullscreen status of the
+  active OS Window. Default shortcuts using this action: ctrl+shift+f11
+\item
+  \textbf{toggle\_maximized}: Toggle the maximized status of the active
+  OS Window. Default shortcuts using this action: ctrl+shift+f10
+\end{itemize}
+
+\end{col}
+
+\begin{col}{0.02\textwidth}
+~
+
+\end{col}
+
+\begin{col}{0.48\textwidth}
+
+\hypertarget{tab-management}{%
+\subsubsection{Tab management}\label{tab-management}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{detach\_tab}: Detach a tab, moving it to another OS Window
+\item
+  \textbf{goto\_tab}: Go to the specified tab, by number, starting with
+  1. Zero and negative numbers go to previously active tabs
+\item
+  \textbf{move\_tab\_backward}: Move the active tab backward. Default
+  shortcuts using this action: ctrl+shift+,
+\item
+  \textbf{move\_tab\_forward}: Move the active tab forward. Default
+  shortcuts using this action: ctrl+shift+.
+\item
+  \textbf{new\_tab}: Create a new tab. Default shortcuts using this
+  action: ctrl+shift+t
+\item
+  \textbf{new\_tab\_with\_cwd}: Create a new tab with working directory
+  for the window in it set to the same as the active window.
+\item
+  \textbf{next\_tab}: Make the next tab active. Default shortcuts using
+  this action: ctrl+shift+right
+\item
+  \textbf{previous\_tab}: Make the previous tab active. Default
+  shortcuts using this action: ctrl+shift+left
+\item
+  \textbf{select\_tab}: Interactively select a tab to switch to
+\item
+  \textbf{set\_tab\_title}: Change the title of the active tab. Default
+  shortcuts using this action: ctrl+shift+alt+t
+\end{itemize}
+
+\hypertarget{miscellaneous}{%
+\subsubsection{Miscellaneous}\label{miscellaneous}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{send\_text}: Send the specified text to the active window.
+  Default shortcuts using this action: ctrl+shift+alt+h
+\item
+  \textbf{signal\_child}: Send the specified SIGNAL to the foreground
+  process in the active window.
+\item
+  \textbf{clear\_terminal}: Clear the terminal. Default shortcuts using
+  this action: ctrl+shift+delete.
+\item
+  \textbf{combine}: Combine multiple actions and map to a single
+  keypress. The syntax is: map key combine action1 action2 action3
+  \ldots{}
+\item
+  \textbf{disable\_ligatures\_in}: Turn on/off ligatures in the
+  specified window.
+\item
+  \textbf{discard\_event}: Discard this event completely ignoring it.
+\item
+  \textbf{edit\_config\_file}: Edit the kitty.conf config file in your
+  favorite text editor. Default shortcuts using this action:
+  ctrl+shift+f2
+\item
+  \textbf{input\_unicode\_character}: Input an arbitrary unicode
+  character.
+\item
+  \textbf{kitten}: Run the specified kitten. Default shortcuts using
+  this action: ctrl+shift+p\textgreater n, ctrl+shift+u,
+  ctrl+shift+p\textgreater h, ctrl+shift+p\textgreater l,
+  ctrl+shift+p\textgreater f, ctrl+shift+p\textgreater w,
+  ctrl+shift+p\textgreater y, ctrl+shift+p\textgreater shift+f
+\item
+  \textbf{kitty\_shell}: Run the kitty shell to control kitty with
+  commands. Default shortcuts using this action: ctrl+shift+escape
+\item
+  \textbf{launch}: Launch the specified program in a new window/tab/etc.
+\item
+  \textbf{load\_config\_file}: Reload the config file. Default shortcuts
+  using this action: ctrl+shift+f5
+\item
+  \textbf{open\_url\_with\_hints}: Click a URL using the keyboard.
+  Default shortcuts using this action: ctrl+shift+e
+\item
+  \textbf{remote\_control}: Run a remote control command.
+\item
+  \textbf{set\_colors}: Change colors in the specified windows.
+\item
+  \textbf{show\_kitty\_env\_vars}: Show the environment variables that
+  the kitty process sees.
+\end{itemize}
+
+\end{col}
+
+\end{cols}
+
+\pagebreak
+
+\end{document}
